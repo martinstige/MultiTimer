@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/MultiTimer/static/css/main.78a384a2.css",
+    "main.js": "/MultiTimer/static/js/main.d440f322.js",
+    "static/js/453.2e77853c.chunk.js": "/MultiTimer/static/js/453.2e77853c.chunk.js",
+    "index.html": "/MultiTimer/index.html",
+    "main.78a384a2.css.map": "/MultiTimer/static/css/main.78a384a2.css.map",
+    "main.d440f322.js.map": "/MultiTimer/static/js/main.d440f322.js.map",
+    "453.2e77853c.chunk.js.map": "/MultiTimer/static/js/453.2e77853c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.78a384a2.css",
+    "static/js/main.d440f322.js"
+  ]
+}
