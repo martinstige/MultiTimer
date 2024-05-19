@@ -39,7 +39,7 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
   };
 
   return (
-    <div className={styles.MultiTimer}>
+    <div className={styles.multiTimer}>
       <div className={styles.topButtonRow}>
         <button
           className={styles.playButton + " material-symbols-outlined"}
@@ -50,6 +50,7 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
         <button
           className={styles.playButton + " material-symbols-outlined"}
           onClick={onStop}
+          disabled={!runners.some((r) => r.isRunning())}
         >
           stop_circle
         </button>
@@ -64,7 +65,7 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
               <TimerRow runner={runner} />
             ))}
         </div>
-        
+
         <div className={styles.finishedTimers}>
           {runners
             .filter((r) => r.isEnded())
