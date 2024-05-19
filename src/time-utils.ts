@@ -23,7 +23,7 @@ export const toTimeString = (time: Date, includeHundreads = true) => {
     .getMilliseconds()
     .toString()
     .padStart(2, "0")
-    .substring(0, 2);
+    .substring(0, 1);
 
   const includeHours = time.getHours() > 1;
 
