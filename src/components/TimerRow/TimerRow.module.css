@@ -1,6 +1,14 @@
 .TimerRow {
-    span {
-      padding-right: 10px;
-    }
-}
+  display: flex;
+  justify-content: space-between;
+  
+  font-size: 2rem;
 
+  span {
+    padding-right: 10px;
+  }
+
+  .timer {
+    font-family: "Roboto Mono", monospace;
+  }
+}

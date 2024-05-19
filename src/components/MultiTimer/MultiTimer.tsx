@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./MultiTimer.module.scss";
+import styles from "./MultiTimer.module.css";
 import { Runner } from "../../runner";
 import { TimerRow } from "../TimerRow/TimerRow";
 import { FinishedTimerRow } from "../FinishedTimerRow";
@@ -39,25 +39,46 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
   };
 
   return (
-    <>
-      <button onClick={onStart}>Start</button>
-      <button onClick={onStop}>Stop</button>
-      <hr />
-      {runners
-        .filter((r) => r.isRunning())
-        .sort((a, b) => b.startTime - a.startTime)
-        .map((runner) => (
-          <TimerRow runner={runner} />
-        ))}
-      <hr />
-      {runners
-        .filter((r) => r.isEnded())
-        .sort((a, b) => b.startTime - a.startTime)
-        .map((runner) => (
-          <FinishedTimerRow runner={runner} />
-        ))}
-      <hr />
-      <button onClick={onReset}>Reset</button>
-    </>
+    <div className={styles.MultiTimer}>
+      <div className={styles.topButtonRow}>
+        <button
+          className={styles.playButton + " material-symbols-outlined"}
+          onClick={onStart}
+        >
+          play_circle
+        </button>
+        <button
+          className={styles.playButton + " material-symbols-outlined"}
+          onClick={onStop}
+        >
+          stop_circle
+        </button>
+      </div>
+
+      <div className={styles.timersSection}>
+        <div className={styles.runningTimers}>
+          {runners
+            .filter((r) => r.isRunning())
+            .sort((a, b) => b.startTime - a.startTime)
+            .map((runner) => (
+              <TimerRow runner={runner} />
+            ))}
+        </div>
+        
+        <div className={styles.finishedTimers}>
+          {runners
+            .filter((r) => r.isEnded())
+            .sort((a, b) => b.startTime - a.startTime)
+            .map((runner) => (
+              <TimerRow runner={runner} />
+            ))}
+        </div>
+      </div>
+      <div className={styles.footer}>
+        <button className={styles.resetButton} onClick={onReset}>
+          Reset
+        </button>
+      </div>
+    </div>
   );
 }

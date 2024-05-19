@@ -19,12 +19,12 @@ export function TimerRow(props: TimerRowProps) {
     return () => {
       clearInterval(interval);
     };
-  }, [props.runner.startTime]);
+  }, [props.runner.startTime, props.runner.endTime]);
 
   return (
     <div key={props.runner.name} className={styles.TimerRow}>
       <span>{props.runner.name}</span>
-      <span>{toTimeString(getDate(elapsed))}</span>
+      <span className={styles.timer}>{toTimeString(getDate(elapsed))}</span>
     </div>
   );
 }

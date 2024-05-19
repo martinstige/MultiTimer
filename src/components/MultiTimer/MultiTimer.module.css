@@ -1,0 +1,53 @@
+.MultiTimer {
+  margin: 1rem;
+  background-color: white;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 0.1rem;
+  height: 98vh;
+}
+
+.topButtonRow {
+  grid-row: 1;
+  
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  
+  .playButton {
+    font-size: 3rem;
+    border-radius: 2rem;
+    /* height: 4rem; */
+  }
+}
+
+
+.timersSection {
+  grid-row: 2;
+  flex-grow: 20;
+  
+  border-radius: 0.4rem;
+
+  .runningTimers {
+    background-color: rgb(211, 211, 211);
+    min-height: 3rem;
+  }
+  .finishedTimers{
+    background-color: rgb(240, 240,240);
+
+  }
+}
+
+.footer {
+  grid-row: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  .resetButton {
+    font-size: 2rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
