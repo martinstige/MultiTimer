@@ -13,24 +13,18 @@ export function TimerRow(props: TimerRowProps) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const now = Date.now();
-      const elapsed = now - props.runner.startTime;
-      setElapsed(elapsed);
-    }, 1000);
+      setElapsed(props.runner.getElapsed());
+    }, 100);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [props.runner.startTime]);
 
   return (
     <div key={props.runner.name} className={styles.TimerRow}>
-      
       <span>{props.runner.name}</span>
-      {/* <span>{toTimeString(getDate(props.runner.startTime))}</span> */}
       <span>{toTimeString(getDate(elapsed))}</span>
-
-      {/* <button onClick={() => props.stop(elapsed)}>Stop</button> */}
     </div>
   );
 }

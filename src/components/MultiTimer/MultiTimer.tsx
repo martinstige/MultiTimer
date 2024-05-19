@@ -33,6 +33,11 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
     setRunners(updatedRunners);
   };
 
+  const onReset = () => {
+    setRunners([]);
+    setCounter(0);
+  };
+
   return (
     <>
       <button onClick={onStart}>Start</button>
@@ -41,18 +46,18 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
       {runners
         .filter((r) => r.isRunning())
         .sort((a, b) => b.startTime - a.startTime)
-        .map((runner, index) => (
+        .map((runner) => (
           <TimerRow runner={runner} />
         ))}
       <hr />
       {runners
         .filter((r) => r.isEnded())
         .sort((a, b) => b.startTime - a.startTime)
-        .map((runner, index) => (
+        .map((runner) => (
           <FinishedTimerRow runner={runner} />
         ))}
       <hr />
-      <button onClick={() => setRunners([])}>Reset</button>
+      <button onClick={onReset}>Reset</button>
     </>
   );
 }

@@ -20,4 +20,9 @@ export class Runner {
     public isEnded(): boolean {
         return this.endTime > 0;
     }
+
+    public getElapsed(): number {
+        console.log('getElapsed', this.name, Date.now() - this.startTime);
+        return Date.now() - this.startTime;
+    }
 }

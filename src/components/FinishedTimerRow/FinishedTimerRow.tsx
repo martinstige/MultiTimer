@@ -13,10 +13,7 @@ export function FinishedTimerRow(props: FinishedTimerRowProps) {
   return (
     <div key={props.runner.name} className={styles.FinishedTimerRow}>
       <span>{props.runner.name}</span>
-      {/* <span>{toTimeString(getDate(props.runner.startTime))}</span> */}
-      <span>{toTimeString(getDate(elapsed))}</span>
-
-      {/* <button onClick={() => props.stop(elapsed)}>Stop</button> */}
+      <span>{toTimeString(getDate(elapsed), true)}</span>
     </div>
   );
 }
