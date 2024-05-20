@@ -3,13 +3,15 @@ import React from "react";
 import styles from "./MultiTimer.module.css";
 import { Runner } from "../../runner";
 import { TimerRow } from "../TimerRow/TimerRow";
-import { FinishedTimerRow } from "../FinishedTimerRow";
+import { ConfirmationDialog } from "../ConfirmationDialog";
 
 export interface MultiTimerProps {}
 
 export function MultiTimer(props: MultiTimerProps) {
   const [runners, setRunners] = React.useState<Runner[]>([]);
   const [counter, setCounter] = React.useState(0);
+  const [resetConfirmationOpen, setResetConfirmationOpen] =
+    React.useState(false);
   const onStart = () => {
     setRunners([new Runner(`#${counter}`, Date.now(), 0), ...runners]);
     setCounter(counter + 1);
@@ -43,6 +45,7 @@ export function MultiTimer(props: MultiTimerProps) {
   };
 
   const onReset = () => {
+    setResetConfirmationOpen(false);
     setRunners([]);
     setCounter(0);
   };
@@ -85,10 +88,21 @@ export function MultiTimer(props: MultiTimerProps) {
         </div>
       </div>
       <div className={styles.footer}>
-        <button className={styles.resetButton} onClick={onReset}>
+        <button
+          className={styles.resetButton}
+          onClick={() => setResetConfirmationOpen(true)}
+        >
           Reset
         </button>
       </div>
+
+      {resetConfirmationOpen && (
+        <ConfirmationDialog
+          prompt="Are you sure you want to reset all timers?"
+          onConfirm={onReset}
+          onCancel={() => setResetConfirmationOpen(false)}
+        />
+      )}
     </div>
   );
 }
