@@ -13,6 +13,10 @@ export class Runner {
     return new Runner(this.name, this.startTime, Date.now());
   }
 
+  public resume(): Runner {
+    return new Runner(this.name, this.startTime, 0);
+  }
+
   public isRunning(): boolean {
     return this.endTime === 0;
   }

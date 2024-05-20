@@ -5,11 +5,9 @@ import { Runner } from "../../runner";
 import { TimerRow } from "../TimerRow/TimerRow";
 import { FinishedTimerRow } from "../FinishedTimerRow";
 
-export interface MultiTimerProps {
-  prop?: string;
-}
+export interface MultiTimerProps {}
 
-export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
+export function MultiTimer(props: MultiTimerProps) {
   const [runners, setRunners] = React.useState<Runner[]>([]);
   const [counter, setCounter] = React.useState(0);
   const onStart = () => {
@@ -18,17 +16,28 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
   };
 
   const onStop = () => {
-    const lastActiveRunner = runners
+    const oldestActiveRunner = runners
       .filter((r) => r.isRunning())
       .reduce((prevRunner, currRunner) => {
         return currRunner.startTime < prevRunner.startTime
           ? currRunner
           : prevRunner;
       });
+    stopSelected(oldestActiveRunner);
+  };
 
+  const stopSelected = (runner: Runner) => {
+    updateRunner(runner.stop());
+  };
+
+  const resumeSelected = (runner: Runner) => {
+    updateRunner(runner.resume());
+  };
+
+  const updateRunner = (runner: Runner) => {
     const updatedRunners = [
-      ...runners.filter((r) => r.name !== lastActiveRunner.name),
-      lastActiveRunner.stop(),
+      ...runners.filter((r) => r.name !== runner.name),
+      runner,
     ];
     setRunners(updatedRunners);
   };
@@ -48,7 +57,7 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
           play_circle
         </button>
         <button
-          className={styles.playButton + " material-symbols-outlined"}
+          className={styles.stopButton + " material-symbols-outlined"}
           onClick={onStop}
           disabled={!runners.some((r) => r.isRunning())}
         >
@@ -62,7 +71,7 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
             .filter((r) => r.isRunning())
             .sort((a, b) => b.startTime - a.startTime)
             .map((runner) => (
-              <TimerRow runner={runner} />
+              <TimerRow runner={runner} stop={stopSelected} />
             ))}
         </div>
 
@@ -71,7 +80,7 @@ export function MultiTimer({ prop = "default value" }: MultiTimerProps) {
             .filter((r) => r.isEnded())
             .sort((a, b) => b.startTime - a.startTime)
             .map((runner) => (
-              <TimerRow runner={runner} />
+              <TimerRow runner={runner} resume={resumeSelected} />
             ))}
         </div>
       </div>

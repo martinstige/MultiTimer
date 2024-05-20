@@ -1,14 +1,18 @@
-.TimerRow {
+.timerRow {
   display: flex;
   justify-content: space-between;
-  
-  font-size: 2rem;
 
-  span {
-    padding-right: 10px;
-  }
+  padding: 0.2rem;
+
+  font-size: 2rem;
 
   .timer {
     font-family: "Roboto Mono", monospace;
+  }
+
+  .resumeButton,
+  .stopButton {
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0);
   }
 }
