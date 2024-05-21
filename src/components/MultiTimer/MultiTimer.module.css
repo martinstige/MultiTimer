@@ -6,8 +6,8 @@
   height: 100vh;
 }
 
-.topButtonRow {
-  grid-row: 1;
+.timerButtonRow {
+  /* grid-row: 1; */
   padding: 1rem;
 
   display: flex;
@@ -21,7 +21,7 @@
 }
 
 .timersSection {
-  grid-row: 2;
+  /* grid-row: 2; */
   flex-grow: 20;
 
   overflow-y: auto;
@@ -38,13 +38,13 @@
   }
 }
 
-.footer {
-  grid-row: 3;
+.mainMenuRow {
+  /* grid-row: 3; */
 
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: rgb(211, 211, 211);
+  /* background-color: rgb(211, 211, 211); */
 
   padding: 0.5rem; 
   .resetButton {

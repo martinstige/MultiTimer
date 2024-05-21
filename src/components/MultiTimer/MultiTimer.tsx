@@ -52,19 +52,12 @@ export function MultiTimer(props: MultiTimerProps) {
 
   return (
     <div className={styles.multiTimer}>
-      <div className={styles.topButtonRow}>
+      <div className={styles.mainMenuRow}>
         <button
-          className={styles.playButton + " material-symbols-outlined"}
-          onClick={onStart}
+          className={styles.resetButton}
+          onClick={() => setResetConfirmationOpen(true)}
         >
-          play_circle
-        </button>
-        <button
-          className={styles.stopButton + " material-symbols-outlined"}
-          onClick={onStop}
-          disabled={!runners.some((r) => r.isRunning())}
-        >
-          stop_circle
+          Reset
         </button>
       </div>
 
@@ -87,15 +80,22 @@ export function MultiTimer(props: MultiTimerProps) {
             ))}
         </div>
       </div>
-      <div className={styles.footer}>
+
+      <div className={styles.timerButtonRow}>
         <button
-          className={styles.resetButton}
-          onClick={() => setResetConfirmationOpen(true)}
+          className={styles.playButton + " material-symbols-outlined"}
+          onClick={onStart}
         >
-          Reset
+          play_circle
+        </button>
+        <button
+          className={styles.stopButton + " material-symbols-outlined"}
+          onClick={onStop}
+          disabled={!runners.some((r) => r.isRunning())}
+        >
+          stop_circle
         </button>
       </div>
-
       {resetConfirmationOpen && (
         <ConfirmationDialog
           prompt="Are you sure you want to reset all timers?"
